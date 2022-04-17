@@ -5,6 +5,8 @@
 #include <string>
 
 namespace bifile {
+	const std::string URL = "http";
+
 	class Bifile {
 	private:
 		std::ifstream input_file;

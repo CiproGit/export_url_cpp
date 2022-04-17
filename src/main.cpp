@@ -1,24 +1,26 @@
 #include "bifile.h"
 #include <iostream>
 
+using namespace std;
+
 int main(void) {
-	std::string input_file_path;
-	std::string output_file_path;
+	cout << "**********************\n";
+	cout << "*     EXPORT URL     *\n";
+	cout << "**********************\n" << endl;
 
-	std::cout << "******************\n";
-	std::cout << "*   EXPORT URL   *\n";
-	std::cout << "******************" << std::endl;
+	string input_file_path;
+	string output_file_path;
 
-	std::cout << "\nInsert the input file including path:" << std::endl;
-	std::cin >> input_file_path;
+	cout << "\nInsert the input file including path:" << endl;
+	cin >> input_file_path;
 
-	std::cout << "\nInsert the output file including path:" << std::endl;
-	std::cin >> output_file_path;
+	cout << "\nInsert the output file including path:" << endl;
+	cin >> output_file_path;
 
 	bifile::Bifile bifile(input_file_path, output_file_path);
 	if (!bifile.is_really_open()) {
-		std::cerr << "Error opening files" << std::endl;
-		exit(EXIT_FAILURE);
+		cerr << "Error opening files" << endl;
+		return EXIT_FAILURE;
 	}
 
 	bifile.export_url();
@@ -27,5 +29,6 @@ int main(void) {
 
 	bifile.~Bifile();
 
+	cout << "End" << endl;
 	return EXIT_SUCCESS;
 }

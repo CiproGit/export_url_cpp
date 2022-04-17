@@ -1,12 +1,12 @@
 #include "bifile.h"
 #include <iostream>
 
-namespace bifile {
-	#define URL "http"
+using namespace std;
 
-	Bifile::Bifile(std::string input_file, std::string output_file) {
-		this->input_file.open(input_file, std::ifstream::in);
-		if (this->input_file.is_open()) this->output_file.open(output_file, std::ofstream::out | std::ofstream::trunc);
+namespace bifile {
+	Bifile::Bifile(string input_file, string output_file) {
+		this->input_file.open(input_file, ifstream::in);
+		if (this->input_file.is_open()) this->output_file.open(output_file, ofstream::out | ofstream::trunc);
 	}
 
 	Bifile::~Bifile() {
@@ -27,13 +27,13 @@ namespace bifile {
 	}
 
 	void Bifile::export_url() {
-		std::string string;
-		std::size_t i;
+		string string;
+		size_t i;
 
-		while (std::getline(this->input_file, string)) { // Read a line of input from input_file
+		while (getline(this->input_file, string)) { // Read a line of input from input_file
 			i = string.find(URL); // Search URL in string
 
-			if (i != std::string::npos) {
+			if (i != string::npos) {
 				for (; ; i++) {
 					// Write to output_file by truncating
 					if (string[i] == '\0' || string[i] == ' ' || string[i] == '"') {
@@ -48,16 +48,16 @@ namespace bifile {
 	}
 
 	void Bifile::count_url() {
-		std::string string;
-		std::size_t i;
+		string string;
+		size_t i;
 		unsigned int count = 0;
 
-		while (std::getline(this->input_file, string)) { // Read a line of input from input_file
+		while (getline(this->input_file, string)) { // Read a line of input from input_file
 			i = string.find(URL); // Search URL in string
 
-			if (i != std::string::npos) count++; // Count URLs
+			if (i != string::npos) count++; // Count URLs
 		}
 
-		std::cout << "Number of URLs found: " << count << std::endl;
+		cout << "Number of URLs found: " << count << endl;
 	}
 } /* namespace bifile */
